@@ -10,8 +10,8 @@ import {
 
 export interface Ubicacion {
   name: string;
-  latitud: number;
-  longitud: number;
+  latitud: any;
+  longitud: any;
 }
 
 @Component({
@@ -20,18 +20,16 @@ export interface Ubicacion {
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  latitude: number = 0;
-  longitude: number = 0;
+  latitude: any;
+  longitude: any;
   filesCollection: AngularFirestoreCollection<Ubicacion>;
   files: any; 
 
   constructor(
     private geolocation: Geolocation,
     private afs: AngularFirestore,
-    private afStorage: AngularFireStorage
   ) {
     this.filesCollection = afs.collection<Ubicacion>('ubicacionCollection');
-    this.files = this.filesCollection.valueChanges();
   }
 
   options = {
